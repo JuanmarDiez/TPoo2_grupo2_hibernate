@@ -16,12 +16,15 @@ public class UsuarioAbm {
 	}
 	
 	public Usuario traer(long idUsuario) {
+		//trae un usuario a partir de su id
 		return UsuarioDao.getInstance().traer(idUsuario);
 	}
 	
 	
 	public long agregarCliente(String email, String contrasena, String nombre, String apellido, int dni) throws Exception {
+		//agregar cliente por parametros
 		
+		//Busca si existe algun cliente con el mismo dni u email
 		for(Usuario u:traer()) {
 			if(dni == u.getDni()) {
 				throw new Exception("Ya existe un cliente con ese dni:"+dni);
@@ -31,6 +34,7 @@ public class UsuarioAbm {
 			}
 		}
 		
+		//Añade a una lista todos los usuarios que sean una instancia de cliente
 		List<Cliente> aux = new ArrayList<Cliente>();
 		for(Usuario u : traer()) {
 			if(u instanceof Cliente) {
@@ -38,16 +42,21 @@ public class UsuarioAbm {
 				aux.add(c);
 			}
 		}
+		
+		//Asigna al cliente su numero de cliente
 		int nro = 1;
 		if(!aux.isEmpty()) {
 			nro=aux.get(aux.size()-1).getNroCliente()+1;
 		}
+		
 		return UsuarioDao.getInstance().agregar(new Cliente(email, contrasena,nombre, apellido,dni,nro));
 	}
 	
 	public void eliminar(long idUsuario) throws Exception {
 		//Una vez hecho la clase turnos hay que implementar no poder borrar el cliente o empleado si tiene un turno
+		
 		Usuario u = UsuarioDao.getInstance().traer(idUsuario);
+		//Comprueba que el cliente a eliminar exista
 		if(u == null) {
 			throw new Exception("No existe ningun usuario con el id:"+idUsuario);
 		}
@@ -56,6 +65,7 @@ public class UsuarioAbm {
 	}
 
 	public List<Usuario> traer() {
+		//Trae la lista de todos los usuarios
 		return UsuarioDao.getInstance().traer();
 	}
 
