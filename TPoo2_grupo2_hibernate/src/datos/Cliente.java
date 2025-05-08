@@ -1,6 +1,8 @@
 package datos;
 
+
 import java.util.Set;
+
 
 public class Cliente extends Usuario {
 	private int nroCliente;
@@ -8,8 +10,8 @@ public class Cliente extends Usuario {
 	
 	public Cliente() {}
 
-	public Cliente(String email, String contrasena, String nombre, String apellido, int dni,int nroCliente) {
-		super(email, contrasena, nombre, apellido, dni);
+	public Cliente(String email, String contrasena, String nombre, String apellido, int dni,String tipo,int nroCliente) {
+		super(email, contrasena, nombre, apellido, dni,tipo);
 		this.nroCliente = nroCliente;
 	}
 
@@ -31,9 +33,9 @@ public class Cliente extends Usuario {
 
 	@Override
 	public String toString() {
-		return "Cliente ["+ super.toString() +"nroCliente=" + nroCliente + "]";
+		return "Cliente ["+ super.toString() +" nroCliente=" + nroCliente + "]";
 	}
-	
-	
-	
 }
+	
+	
+

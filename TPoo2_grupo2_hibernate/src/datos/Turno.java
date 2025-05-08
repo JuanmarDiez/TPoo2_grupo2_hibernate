@@ -1,5 +1,6 @@
 package datos;
 
+
 public class Turno {
 	private long idTurno;
 	private Cliente cliente;
@@ -7,10 +8,11 @@ public class Turno {
 	private Lugar lugar;
 	private Servicio servicio;
 	private DetalleTurno detalle;
-
+	
 	public Turno() {}
 
 	public Turno(Cliente cliente, Empleado empleado, Lugar lugar, Servicio servicio, DetalleTurno detalle) {
+		super();
 		this.cliente = cliente;
 		this.empleado = empleado;
 		this.lugar = lugar;
@@ -68,11 +70,10 @@ public class Turno {
 
 	@Override
 	public String toString() {
-		return "Turno [idTurno=" + idTurno +
-				", cliente=" + cliente +
-				", empleado=" + empleado +
-				", lugar=" + lugar +
-				", servicio=" + servicio +
-				", detalle=" + detalle + "]";
+		return "Turno [idTurno=" + idTurno + ", cliente=" + cliente + ", empleado=" +  empleado + ", lugar=" + lugar
+				+ ", servicio=" + servicio + ", detalle=" + detalle + "]";
 	}
+
+	
+
 }

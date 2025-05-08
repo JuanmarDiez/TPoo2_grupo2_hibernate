@@ -13,29 +13,28 @@ import datos.Servicio;
 public class ServicioDao {
 	private static Session session;
 	private Transaction tx;
-	private static ServicioDao instancia = null; // Singleton
-
-	protected ServicioDao() {}
-	public static ServicioDao getInstance() {
-		if (instancia == null) instancia = new ServicioDao();
+	private static ServicioDao instancia = null; //Singleton
+	
+	public ServicioDao() {}
+	public static ServicioDao getInstance(){
+		if(instancia==null) instancia = new ServicioDao();
 		return instancia;
 	}
-
+	
 	private void iniciaOperacion() throws HibernateException {
 		session = HibernateUtil.getSessionFactory().openSession();
 		tx = session.beginTransaction();
 	}
-
 	private void manejaExcepcion(HibernateException he) throws HibernateException {
-		if (tx != null) tx.rollback();
+		tx.rollback();
 		throw new HibernateException("ERROR en la capa de acceso a datos", he);
 	}
-
-	public long agregar(Servicio servicio) {
+	
+	public long agregar(Servicio objeto) {
 		long id = 0;
 		try {
 			iniciaOperacion();
-			id = (Long) session.save(servicio);
+			id = Integer.parseInt(session.save(objeto).toString());
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -44,11 +43,11 @@ public class ServicioDao {
 		}
 		return id;
 	}
-
-	public void actualizar(Servicio servicio) {
+	
+	public void actualizar(Servicio objeto) {
 		try {
 			iniciaOperacion();
-			session.update(servicio);
+			session.update(objeto);
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -57,10 +56,10 @@ public class ServicioDao {
 		}
 	}
 
-	public void eliminar(Servicio servicio) {
+	public void eliminar(Servicio objeto) {
 		try {
 			iniciaOperacion();
-			session.delete(servicio);
+			session.delete(objeto);
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
@@ -68,24 +67,24 @@ public class ServicioDao {
 			session.close();
 		}
 	}
-
 	public Servicio traer(long idServicio) {
-		Servicio servicio = null;
+		Servicio objeto = null;
 		try {
 			iniciaOperacion();
-			servicio = session.get(Servicio.class, idServicio);
+			objeto = (Servicio) session.get(Servicio.class, idServicio);
 		} finally {
 			session.close();
 		}
-		return servicio;
+		return objeto;
 	}
-
+	
+	
 	public List<Servicio> traer() {
-		List<Servicio> lista = new ArrayList<>();
+		List<Servicio> lista = new ArrayList<Servicio>();
 		try {
 			iniciaOperacion();
 			Query<Servicio> query = session.createQuery("from Servicio s order by s.idServicio asc", Servicio.class);
-			lista = query.getResultList();
+				lista = query.getResultList();
 		} finally {
 			session.close();
 		}

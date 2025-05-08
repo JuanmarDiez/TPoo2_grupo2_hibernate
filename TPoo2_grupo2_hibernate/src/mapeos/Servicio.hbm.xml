@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	
 	<class name="datos.Servicio" table="servicio">
-		<id name="idServicio" column="idServicio">
-			<generator class="identity" />
+		<id column="idServicio" name="idServicio">
+			<generator class="identity"/>
 		</id>
+		<property name="nombreServicio" column="nombreServicio" type="string"/>
+		<property name="detalle" column="detalle" type="string"/>
 		
-		<property name="nombreServicio" column="nombreServicio" type="string" />
-		<property name="detalle" column="detalle" type="string" />
-	</class>
+		<!-- conexion entre lugar y servicio muchos a muchos -->
+		<set table="lugarxservicio" name="lugares" outer-join="true">
+			<key column="idServicio"/>
+			<many-to-many column="idLugar" class="datos.Lugar"/>
+		</set>
+		
+		<!-- conexion entre empleado y servicio muchos a muchos -->
+		<set table="empleadoxservicio" name="empleados" outer-join="true">
+			<key column="idServicio"/>
+			<many-to-many column="idEmpleado" class="datos.Empleado"/>
+		</set>
+		
+		<!-- conexion entre turno y servicio uno a muchos -->
+		<set name="turnos" table="turno" order-by="idTurno asc" inverse="true" lazy="true" fetch="select">
+			<key column="idServicio" not-null="true" />
+			<one-to-many class="datos.Turno" />
+		</set>
 
+		
+	</class>
 </hibernate-mapping>

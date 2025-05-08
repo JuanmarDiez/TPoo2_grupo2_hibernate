@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="datos.Lugar" table="lugar">
+		<id column="idLugar" name="idLugar">
+			<generator class="identity"/>
+		</id>
+		<property name="calle" column="calle" type="string"/>
+		<property name="localidad" column="localidad" type="string"/>
+		
+		<!-- conexion entre lugar y servicio muchos a muchos -->
+		<set table="lugarxservicio" name="servicios" outer-join="true">
+			<key column="idLugar"/>
+			<many-to-many column="idServicio" class="datos.Servicio"/>
+		</set>
+
+		<!-- conexion entre turno y lugar uno a muchos -->
+		<set name="turnos" table="turno" order-by="idTurno asc" inverse="true" lazy="true" fetch="select">
+			<key column="idLugar" not-null="true" />
+			<one-to-many class="datos.Turno" />
+		</set>
+		
+	</class>
+</hibernate-mapping>

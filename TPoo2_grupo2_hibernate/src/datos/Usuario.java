@@ -1,5 +1,6 @@
 package datos;
 
+
 public class Usuario {
 	protected long idUsuario;
 	protected String email;
@@ -7,16 +8,18 @@ public class Usuario {
 	protected String nombre;
 	protected String apellido;
 	protected int dni;
+	protected String tipo;
 	
 	public Usuario() {}
 
-	public Usuario(String email, String contrasena, String nombre, String apellido, int dni) {
+	public Usuario(String email, String contrasena, String nombre, String apellido, int dni,String tipo) {
 		super();
 		this.email = email;
 		this.contrasena = contrasena;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.dni = dni;
+		this.tipo = tipo;
 	}
 
 	public long getIdUsuario() {
@@ -63,8 +66,16 @@ public class Usuario {
 		return dni;
 	}
 
-	public void setDni(int dni) {
+	public void setDni(int dni) throws Exception {
 		this.dni = dni;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	@Override

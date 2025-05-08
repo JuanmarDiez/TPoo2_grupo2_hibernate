@@ -4,48 +4,71 @@ import java.util.List;
 
 import dao.ServicioDao;
 import datos.Servicio;
+import datos.Turno;
+
+
 
 public class ServicioAbm {
-	private static ServicioAbm instancia = null;
-
+	private static ServicioAbm instancia = null; //singleton
 	protected ServicioAbm() {}
-
 	public static ServicioAbm getInstance() {
-		if (instancia == null) instancia = new ServicioAbm();
+		if(instancia == null) instancia = new ServicioAbm();
 		return instancia;
 	}
-
+	
 	public Servicio traer(long idServicio) {
+		//trae un servicio a partir de su id
 		return ServicioDao.getInstance().traer(idServicio);
+	}
+	
+	
+	public long agregarServicio(String nombreServicio, String detalle) throws Exception {
+		//agregar servicio por parametros
+		
+		//Busca si existe algun servicio con el mismo nombre
+		for(Servicio s:traer()) {
+			if(nombreServicio.equals(s.getNombreServicio())) {
+				throw new Exception("Ya existe un servicio con ese nombre:"+nombreServicio);
+			}
+		
+		}
+		
+		return ServicioDao.getInstance().agregar(new Servicio(nombreServicio,detalle));
+	}
+	
+	public void modificar(Servicio s) throws Exception {
+		
+		for(Servicio aux:traer()) {
+			if(aux.getNombreServicio().equals(s.getNombreServicio())) {
+				throw new Exception("El nombre: "+aux.getNombreServicio()+" pertenece al servicio con id: "+aux.getIdServicio());
+			}
+		}
+		
+		ServicioDao.getInstance().actualizar(s);
+	}
+	
+	public void eliminar(long idServicio) throws Exception {
+		
+		Servicio s = ServicioDao.getInstance().traer(idServicio);
+		//Comprueba que el servicio a eliminar exista
+		if(s == null) {
+			throw new Exception("No existe ningun servicio con el id:"+idServicio);
+		}
+		
+		
+		//Comprueba que el servicio a eliminar no este en algun turno
+		for(Turno t:TurnoAbm.getInstance().traer()) {
+			if(idServicio == t.getServicio().getIdServicio()) {
+				throw new Exception("El siguiente id de servicio "+ idServicio +" esta asignado al turno "+t.getIdTurno());
+			}
+			
+		}
+
+		ServicioDao.getInstance().eliminar(s);
 	}
 
 	public List<Servicio> traer() {
+		//Trae la lista de todos los servicios
 		return ServicioDao.getInstance().traer();
-	}
-
-	public long agregar(String nombreServicio, String detalle) throws Exception {
-		// Se podría validar si ya existe un servicio con el mismo nombre
-		for (Servicio s : traer()) {
-			if (s.getNombreServicio().equalsIgnoreCase(nombreServicio)) {
-				throw new Exception("Ya existe un servicio con el nombre: " + nombreServicio);
-			}
-		}
-		Servicio servicio = new Servicio(nombreServicio, detalle);
-		return ServicioDao.getInstance().agregar(servicio);
-	}
-
-	public void actualizar(Servicio servicio) throws Exception {
-		if (traer(servicio.getIdServicio()) == null) {
-			throw new Exception("No existe el servicio con id: " + servicio.getIdServicio());
-		}
-		ServicioDao.getInstance().actualizar(servicio);
-	}
-
-	public void eliminar(long idServicio) throws Exception {
-		Servicio servicio = traer(idServicio);
-		if (servicio == null) {
-			throw new Exception("No existe el servicio con id: " + idServicio);
-		}
-		ServicioDao.getInstance().eliminar(servicio);
 	}
 }
