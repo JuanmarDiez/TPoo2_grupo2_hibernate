@@ -74,6 +74,7 @@ public class TurnoAbm {
 		}
 	}
 
+	//(Caso de uso
 	public List<Turno> traer() {
 		//Trae la lista de todos los turnos
 		return TurnoDao.getInstance().traer();

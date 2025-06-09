@@ -134,12 +134,12 @@ public class UsuarioAbm {
 
 	}
 
-	//consulta por atributo de tipo subClase
+	//consulta por atributo de tipo subClase (Caso de uso 13)
 	public List<Turno> traerTurnos(Empleado e){
 		return UsuarioDao.getInstance().traerTurnos(e);
 	}
 
-	//consulta por atributo de tipo subClase
+	//consulta por atributo de tipo subClase (Caso de uso 12)
 	public List<Turno> traerTurnos(Cliente c){
 		return UsuarioDao.getInstance().traerTurnos(c);
 	}
@@ -158,68 +158,68 @@ public class UsuarioAbm {
 
 	
 	
-	//consulta por atributo de tipo Clase
+	//consulta por atributo de tipo Clase (Caso de uso 10)
 	public List<Turno> traerTurnos(Servicio s){
 		return UsuarioDao.getInstance().traerTurnos(s);
 	}
 
-	//consulta por atributo de tipo Clase
+	//consulta por atributo de tipo Clase (Caso de uso 11)
 	public List<Turno> traerTurnos(Lugar l){
 		return UsuarioDao.getInstance().traerTurnos(l);
 	}
 		
 		
 	
-	//consulta por atributo de Clase
+	//consulta por atributo de Clase (Caso de uso 6)
 	public List<Turno> traerTurnosLugar(int nroCliente,long idLugar){
 		return UsuarioDao.getInstance().traerTurnosLugar(nroCliente,idLugar);
 	}
 	
-	//Consulta por atributo de Clase
+	//Consulta por atributo de Clase (Caso de uso 5)
 	public List<Turno> traerTurnosServicio(int nroCliente,long idServicio){
 		return UsuarioDao.getInstance().traerTurnosServicio(nroCliente,idServicio);
 	}
 	
-	//Consulta por intervalo de fecha
+	//Consulta por intervalo de fecha (Caso de uso 7)
 	public List<Turno> traerTurnos(LocalDate fechaInicio,LocalDate fechaFin) {
 		return UsuarioDao.getInstance().traerTurnos(fechaInicio,fechaFin);
 	}
 	
-	//Consulta por intervalo de fechas
+	//Consulta por intervalo de fechas (Caso de uso 9)
 	public List<Turno> traerTurnos(LocalDate fechaInicio,LocalDate fechaFin,Servicio s) {
 		return UsuarioDao.getInstance().traerTurnos(fechaInicio,fechaFin,s);
 	}
-	//Consulta por intervalo de fechas
+	//Consulta por intervalo de fechas (Caso de uso 10)
 	public List<Turno> traerTurnos(LocalDate fechaInicio,LocalDate fechaFin,Lugar l) {
 		return UsuarioDao.getInstance().traerTurnos(fechaInicio,fechaFin,l);
 	}
 	
-	//Consulta por intervalo de fechas
+	//Consulta por intervalo de fechas ( Caso de uso 19)
 	public List<Turno> traerTurnos(LocalDate fechaInicio,LocalDate fechaFin,Empleado e) {
 		return UsuarioDao.getInstance().traerTurnos(fechaInicio,fechaFin,e);
 	}
 
-	//Consulta por intervalo de fechas
+	//Consulta por intervalo de fechas (Caso de uso 8)
 	public List<Turno> traerTurnos(LocalDate fechaInicio,LocalDate fechaFin,Cliente c) {
 		return UsuarioDao.getInstance().traerTurnos(fechaInicio,fechaFin,c);
 	}
 	
-	//Consulta por fecha y atributo
+	//Consulta por fecha y atributo (Caso de uso 15)
 	public List<Turno> traerTurnos(LocalDate fecha, Cliente c){
 		return UsuarioDao.getInstance().traerTurnos(fecha,c);
 	}
 
-	//Consulta por fecha y atributo
+	//Consulta por fecha y atributo (Caso de uso 17)
 	public List<Turno> traerTurnos(LocalDate fecha, Empleado e){
 		return UsuarioDao.getInstance().traerTurnos(fecha,e);
 	}
 
-	//Consulta por fecha y atributo
+	//Consulta por fecha y atributo (Caso de uso 16)
 	public List<Turno> traerTurnos(LocalDate fecha, Servicio s){
 		return UsuarioDao.getInstance().traerTurnos(fecha,s);
 	}
 
-	//Consulta por fecha y atributo
+	//Consulta por fecha y atributo (Caso de uso 18)
 	public List<Turno> traerTurnos(LocalDate fecha, Lugar l){
 		return UsuarioDao.getInstance().traerTurnos(fecha,l);
 	}
