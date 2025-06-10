@@ -7,3 +7,4 @@
   - connection.url: jdbc:mysql://localhost/(nombre del schema de la base de datos)
   - connection.username: (nombre de usuario para ingresar a la base de datos)
   - connection.password: (contraseña para ingresar a la base de datos)
+- Cargar todos los JARs externos que estan en el siguente link: https://drive.google.com/drive/folders/1vglhAYFqaLrqXhcQTbf95N21y6K-x-Ye?usp=sharing
