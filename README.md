@@ -1,0 +1,9 @@
+- IDE: Eclipse
+- Base de datos: MySQL
+- Script de la base de datos: https://drive.google.com/file/d/1-_NQIHQCbVZcozvNEOqpZd0zUlPGRMOh/view?usp=drive_link
+- Al cargar el codigo se requiere cargar el test llamado TestCargarDatos para que ingrese los datos a la base de datos
+- Corroborar que los IDs de los metodos sean los mismos que estan al cargar la base de datos
+- Editar en la seccion hibernate.cfg.xml los siguientes campos:
+  - connection.url: jdbc:mysql://localhost/(nombre del schema de la base de datos)
+  - connection.username: (nombre de usuario para ingresar a la base de datos)
+  - connection.password: (contraseña para ingresar a la base de datos)
