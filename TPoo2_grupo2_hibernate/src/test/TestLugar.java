@@ -12,13 +12,13 @@ public class TestLugar {
 	public static void main(String[] args) {
 		try {
 			//--------Baja de la clase servicio: Caso de uso 3------------
-			LugarAbm.getInstance().eliminar(2);
+			//LugarAbm.getInstance().eliminar(2);
 			
 			List<Turno> aux;
 			
 			//--------Traer todos los turnos para cierto intervalo de fechas y lugar: Caso de uso 11
 			System.out.println("----------------------Turnos por lugar e intervalo de fechas:CASO DE USO 11-----------");
-			aux =UsuarioAbm.getInstance().traerTurnos(LocalDate.of(2025, 5, 6),LocalDate.of(2025, 5, 9),LugarAbm.getInstance().traer(1));
+			aux = UsuarioAbm.getInstance().traerTurnos(LocalDate.of(2025, 5, 6),LocalDate.of(2025, 5, 9),LugarAbm.getInstance().traer(6));
 			TurnoAbm.getInstance().mostrarListaTurnos(aux);
 			
 			//--------Traer todos los turnos que pertenezcan a un lugar: Caso de uso 13---------------------
