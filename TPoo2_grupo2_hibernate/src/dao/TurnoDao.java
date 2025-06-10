@@ -94,11 +94,11 @@ public class TurnoDao {
 	
 	public void mostrarListaTurnos(List<Turno> lista) {
 		Turno objeto = null;
-		String hql="from Turno t where t.cliente.idUsuario =:idCliente AND t.empleado.idUsuario=:idEmpleado AND t.servicio.idServicio =:idServicio AND t.lugar.idLugar =:idLugar";
+		String hql="from Turno t where t.idTurno =:idTurno AND t.cliente.idUsuario =:idCliente AND t.empleado.idUsuario=:idEmpleado AND t.servicio.idServicio =:idServicio AND t.lugar.idLugar =:idLugar";
 		try {
 			iniciaOperacion();
 			for(Turno t:lista) {
-				objeto=session.createQuery(hql,Turno.class).setParameter("idCliente", t.getCliente().getIdUsuario()).setParameter("idEmpleado", t.getEmpleado().getIdUsuario()).setParameter("idServicio", t.getServicio().getIdServicio()).setParameter("idLugar", t.getLugar().getIdLugar()).uniqueResult();
+				objeto=session.createQuery(hql,Turno.class).setParameter("idTurno", t.getIdTurno()).setParameter("idCliente", t.getCliente().getIdUsuario()).setParameter("idEmpleado", t.getEmpleado().getIdUsuario()).setParameter("idServicio", t.getServicio().getIdServicio()).setParameter("idLugar", t.getLugar().getIdLugar()).uniqueResult();
 				System.out.println(objeto.toString());
 			}
 		} finally {

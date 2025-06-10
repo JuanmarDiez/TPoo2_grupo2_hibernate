@@ -1,6 +1,7 @@
 package test;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import datos.Turno;
@@ -16,13 +17,13 @@ public class TestUsuario {
 			
 			
 			//--------Baja de la clase usuario: Caso de uso 1-----------
-			UsuarioAbm.getInstance().eliminar(4);
+			//UsuarioAbm.getInstance().eliminar(4);
 			
-			List<Turno> aux;
+			List<Turno> aux = new ArrayList<Turno>();
 			
 			//--------Traer todos los turnos para un cliente y servicio en especifico: caso de uso 6----------
 			System.out.println("-------------------Turnos por cliente y servicio:CASO DE USO 6-----------");
-			 aux= UsuarioAbm.getInstance().traerTurnosServicio(1, 1);
+			 aux= UsuarioAbm.getInstance().traerTurnosServicio(25, 6);
 			 TurnoAbm.getInstance().mostrarListaTurnos(aux);
 			 
 			//--------Traer todos los turnos para un cliente en un lugar en especifico: Caso de uso 7----------
