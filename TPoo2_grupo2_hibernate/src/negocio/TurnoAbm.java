@@ -26,10 +26,7 @@ public class TurnoAbm {
 	}
 		
 	
-	public long agregar(long cliente, long empleado, long lugar, long servicio,DetalleTurno detalle) throws Exception {
-		
-		
-
+	public long agregar(long cliente, long empleado, long lugar, long servicio,DetalleTurno detalle) throws Exception {			
 		return TurnoDao.getInstance().agregar(new Turno((Cliente) UsuarioAbm.getInstance().traer(cliente),(Empleado) UsuarioAbm.getInstance().traer(empleado),LugarAbm.getInstance().traer(lugar),ServicioAbm.getInstance().traer(servicio),detalle));
 	}
 	
