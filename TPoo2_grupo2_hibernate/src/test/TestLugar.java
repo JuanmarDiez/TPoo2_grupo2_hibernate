@@ -18,7 +18,7 @@ public class TestLugar {
 			
 			//--------Traer todos los turnos para cierto intervalo de fechas y lugar: Caso de uso 11
 			System.out.println("----------------------Turnos por lugar e intervalo de fechas:CASO DE USO 11-----------");
-			aux = UsuarioAbm.getInstance().traerTurnos(LocalDate.of(2025, 5, 6),LocalDate.of(2025, 5, 9),LugarAbm.getInstance().traer(6));
+			aux = UsuarioAbm.getInstance().traerTurnos(LocalDate.of(2025, 5, 6),LocalDate.of(2025, 5, 9),LugarAbm.getInstance().traer(1));
 			TurnoAbm.getInstance().mostrarListaTurnos(aux);
 			
 			//--------Traer todos los turnos que pertenezcan a un lugar: Caso de uso 13---------------------
